@@ -19,7 +19,7 @@ Load the project context first, then choose the right workflow.
 - Treat `carlo_memory` as the first source for standards, preferences, infra, and prior decisions.
 - Prefer **Chris Coding Standards** over generic best practices.
 - Use existing projects as implementation references only after checking memory.
-- For project-specific work, look for the closest matching reference among HSV, Sentinel Trader, Wine, and Dopamind.
+- For project-specific work, query `carlo_memory` for known projects and find the closest matching reference.
 - Keep responses and plans practical.
 - If a command would change external systems (GitHub, deploys, production config), require explicit user intent unless already provided.
 
@@ -32,36 +32,33 @@ Load the project context first, then choose the right workflow.
 - Ollama Embeddings: `http://192.168.178.100:11434`
 
 ### How to query `carlo_memory`
-Use the bundled helper:
-- `scripts/query_memory.sh '<cypher>'`
+Use the bundled helper script. Default path: `~/.claude/skills/nexus/scripts/query_memory.sh`
+If the skill is installed elsewhere, locate `query_memory.sh` relative to this SKILL.md.
 
 Typical examples:
 - Project context:
-  - `scripts/query_memory.sh 'MATCH (p:Project {name:"HSV"})-[r]-(n) RETURN p.name, type(r), labels(n), coalesce(n.name,n.title,n.hostname)'`
+  - `query_memory.sh 'MATCH (p:Project {name:"HSV"})-[r]-(n) RETURN p.name, type(r), labels(n), coalesce(n.name,n.title,n.hostname)'`
 - Coding standards:
-  - `scripts/query_memory.sh 'MATCH (:StandardSet {name:"Chris Coding Standards"})-[:CONTAINS]->(:StandardSection)-[:CONTAINS]->(r:Rule) RETURN r.title, r.category, r.scope LIMIT 20'`
+  - `query_memory.sh 'MATCH (:StandardSet {name:"Chris Coding Standards"})-[:CONTAINS]->(:StandardSection)-[:CONTAINS]->(r:Rule) RETURN r.title, r.category, r.scope LIMIT 20'`
 - Infra/deploy context:
-  - `scripts/query_memory.sh 'MATCH (p:Project {name:"HSV"})-[r]-(n) RETURN type(r), labels(n), coalesce(n.name,n.hostname,n.title)'`
+  - `query_memory.sh 'MATCH (s:Server)-[r]-(n) RETURN s.hostname, type(r), labels(n), coalesce(n.name,n.title)'`
 
-### Coding standards source
-Read `references/coding-standards-source.md`.
+### Coding standards
+Query `carlo_memory` first (see examples above).
+Wiki fallback (only if memory is unreachable):
+Try `~/.claude/.wiki-token` first. If the file does not exist, ask the user for the token.
+```bash
+WT=$(cat ~/.claude/.wiki-token) && for id in 14 77 78 79; do curl -s -X POST 'http://192.168.178.67:3100/graphql' -H 'Content-Type: application/json' -H "Authorization: Bearer $WT" -d "{\"query\":\"{ pages { single(id: $id) { id title content } } }\"}"; done
+```
+Pages: 14 (General TypeScript), 77 (Angular), 78 (Node.js), 79 (Testing).
 
-Primary rule:
-- Use `carlo_memory` first for standards.
-- Use the original wiki only as fallback.
-
-### Project lookup fallback
-Read `references/project-registry.md` if the target project is unclear.
-
-Primary rule:
-- Resolve repo/host/location from `carlo_memory` first.
-- If memory is incomplete, inspect GitHub context.
-- If still unclear, ask instead of guessing.
+### Project lookup
+Always resolve project info (repo, host, stack, domain) from `carlo_memory`. If memory is incomplete, inspect GitHub context. If still unclear, ask instead of guessing.
 
 ### Failure mode
 If `carlo_memory` is unreachable:
 1. Say clearly that memory is unavailable.
-2. Use bundled references plus current repo context as fallback.
+2. Use current repo context as fallback.
 3. Ask the user for missing project/infra details instead of inventing them.
 
 ## Standard workflow (all subcommands)
