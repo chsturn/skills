@@ -15,7 +15,7 @@ and coding standards.
 
 ## Core rules
 
-- Prefer the Nexus API first; use raw graph access only when API behavior or data modeling must be inspected.
+- Use the Nexus API only. Do not use SSH, raw FalkorDB access, or direct Qdrant access from this skill.
 - Treat `server` as source of truth for generic technical questions unless the user explicitly asks for `broker` or `web`.
 - Use the right retrieval profile:
   - `implementation`: code-first, entrypoints, services, routes, tests
@@ -37,7 +37,6 @@ and coding standards.
 Use scripts relative to this skill:
 
 - API helper: [`scripts/query_nexus.sh`](scripts/query_nexus.sh)
-- Raw graph helper: [`scripts/query_memory.sh`](scripts/query_memory.sh)
 
 Examples:
 
@@ -61,12 +60,6 @@ Examples:
   "article":"Article 11",
   "profile":"compliance"
 }'
-```
-
-For direct graph inspection:
-
-```bash
-./scripts/query_memory.sh 'MATCH (f:Feature) RETURN f.id LIMIT 10'
 ```
 
 ## Endpoint selection
@@ -110,18 +103,8 @@ Use for:
 - finding paths with PII-related handling
 - scoping privacy / security review surfaces
 
-## When to use raw graph access
-
-Use raw FalkorDB queries only when you need to inspect or debug:
-- node / edge coverage
-- duplicate `WikiPage` or `Feature` relationships
-- mapping-ingest quality
-- why API output is missing a relationship
-
-Prefer API output for normal user-facing answers.
-
 ## Working style
 
 - For user questions, return the best answer, not just raw JSON.
-- For Nexus improvement work, verify with the endpoint-specific eval scripts in the repo.
-- If you change Nexus ranking or ingestion, test against `.100` and report the observed effect.
+- For Nexus query work, answer from the live Nexus API.
+- If the API cannot answer something, state that limitation instead of falling back to SSH or direct DB access.
