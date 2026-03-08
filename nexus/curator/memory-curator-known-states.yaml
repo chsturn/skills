@@ -1,0 +1,86 @@
+# Known States für den Memory-Curator
+# Diese Datei beschreibt bekannte, erwartete Sonderfälle.
+# Sie werden nicht als Problem behandelt, sondern höchstens als info/noise.
+
+known_states:
+  service_replicas:
+    - service: hsv_maintenance-scheduler
+      expected_actual_replicas: 0
+      severity: info
+      reason: maintenance_mode_expected
+      note: Maintenance-Scheduler darf im normalen Zustand 0 Replicas haben.
+
+  orphan_nodes:
+    - label: Software
+      name: OpenClaw
+      severity: info
+      reason: reference_node_expected
+    - label: Config
+      name: source_of_truth
+      severity: info
+      reason: reference_node_expected
+    - label: Config
+      name: swarm_config
+      severity: info
+      reason: reference_node_expected
+
+  reporting_rules:
+    collapse_noise_below: info
+    max_highlights: 5
+
+  completeness_expectations:
+    project_required_fields:
+      - status
+      - last_worked
+    todo_should_have_about: true
+    qdrant_chunk_should_have_graph_ref: true
+
+  qdrant_ref_exceptions:
+    - source_file: SOUL.md
+      severity: noise
+      reason: meta_file
+    - source_file: TOOLS.md
+      severity: noise
+      reason: meta_file
+    - source_file: USER.md
+      severity: noise
+      reason: meta_file
+    - source_file: MEMORY.md
+      severity: info
+      reason: bootstrap_index
+    - source_file: memory/projects/estably-graphrag.md
+      severity: info
+      reason: legacy_project_markdown
+    - source_file: memory/projects/firmen-graphrag.md
+      severity: info
+      reason: legacy_project_markdown
+    - source_file: memory/infra/wiki.md
+      severity: info
+      reason: legacy_infra_markdown
+    - source_file: memory/infra/ai-server.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/projects/hsv.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/projects/sentinel-trader.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/projects/swarm-ha-plan.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/daily/2026-02-18.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/daily/2026-02-19.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/daily/2026-02-20.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/daily/2026-02-23.md
+      severity: info
+      reason: legacy_history_chunk
+    - source_file: memory/daily/2026-03-07.md
+      severity: info
+      reason: legacy_history_chunk
