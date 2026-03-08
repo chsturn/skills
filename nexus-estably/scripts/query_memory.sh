@@ -6,13 +6,14 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
-HOST="192.168.178.100"
+HOST="${NEXUS_HOST:-192.168.178.100}"
+GRAPH="${NEXUS_GRAPH:-estably_graphrag}"
 
 if ! ssh -o ConnectTimeout=3 -o BatchMode=yes "chsturn@${HOST}" true 2>/dev/null; then
-  echo "ERROR: cannot reach carlo_memory host ${HOST} via SSH" >&2
+  echo "ERROR: cannot reach nexus host ${HOST} via SSH" >&2
   exit 2
 fi
 
 CY="$1"
 ssh "chsturn@${HOST}" \
-  "docker exec falkordb redis-cli --raw GRAPH.QUERY carlo_memory \"$CY\""
+  "docker exec falkordb redis-cli --raw GRAPH.QUERY ${GRAPH} \"$CY\""

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nexus Estably"
+  short_description: "Query Estably code, DORA, and standards"
+  default_prompt: "Use $nexus-estably to query Estably code, DORA, impact, or standards context before answering."
