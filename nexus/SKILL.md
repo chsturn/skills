@@ -1,6 +1,13 @@
 ---
 name: nexus
-description: Project operating mode for Chris' personal software projects such as HSV, Sentinel Trader, Wine, Dopamind, and similar new projects. Use when the user invokes /nexus or asks for project work like: (1) feature changes (`/nexus feature ...`), (2) CI/CD setup or improvements (`/nexus cicd ...`), (3) code or PR review (`/nexus review ...`), (4) architecture, stack, or project bootstrap decisions (`/nexus architecture ...`). Always load Chris Coding Standards from carlo_memory first, then check relevant reference projects if needed, and only then fall back to generic best practices.
+description: >
+  Project operating mode for Chris' personal software projects such as HSV,
+  Sentinel Trader, Wine, Dopamind, and similar new projects. Use when the user
+  invokes /nexus or asks for project work like feature changes, CI/CD setup or
+  improvements, code or PR review, and architecture, stack, or project bootstrap
+  decisions. Always load Chris Coding Standards from carlo_memory first, then
+  check relevant reference projects if needed, and only then fall back to
+  generic best practices.
 ---
 
 # Nexus
