@@ -1,0 +1,82 @@
+[
+  {
+    "query": "/fma-review",
+    "should_trigger": true
+  },
+  {
+    "query": "ich hab die auth middleware geändert und den session handler angepasst, kannst du das FMA team drüberschauen lassen?",
+    "should_trigger": true
+  },
+  {
+    "query": "lass mal alle 4 reviewer die letzten changes prüfen bevor ich committe",
+    "should_trigger": true
+  },
+  {
+    "query": "DORA Review bitte, hab die SFTP-Anbindung für Baader umgebaut",
+    "should_trigger": true
+  },
+  {
+    "query": "kannst du ein compliance review der neuen api endpoints machen? security und datenintegrität vor allem",
+    "should_trigger": true
+  },
+  {
+    "query": "4-Augen-Prinzip für die contract state machine änderungen",
+    "should_trigger": true
+  },
+  {
+    "query": "starte das review team für die e2e test assertions die wir gerade eingebaut haben",
+    "should_trigger": true
+  },
+  {
+    "query": "regulatorisches review der ganzen ITM integration, FMA könnte fragen stellen",
+    "should_trigger": true
+  },
+  {
+    "query": "nur QA und Security review für den neuen upload endpoint",
+    "should_trigger": true
+  },
+  {
+    "query": "prüf die änderungen im postfach-handling, ob das DSGVO-konform ist und die tests was taugen",
+    "should_trigger": true
+  },
+  {
+    "query": "fix den typo in der README datei, da steht Vermogensverwaltung statt Vermögensverwaltung",
+    "should_trigger": false
+  },
+  {
+    "query": "schreib eine neue helper funktion die das user postfach nach duplikaten durchsucht",
+    "should_trigger": false
+  },
+  {
+    "query": "kannst du die wiki seite für die e2e tests aktualisieren?",
+    "should_trigger": false
+  },
+  {
+    "query": "bau mir eine mongodb query die alle user mit mehr als 3 VVV einträgen im postfach findet",
+    "should_trigger": false
+  },
+  {
+    "query": "deploye die neue version auf develop und check ob die health checks grün sind",
+    "should_trigger": false
+  },
+  {
+    "query": "erstell einen neuen cypress test für das logout verhalten",
+    "should_trigger": false
+  },
+  {
+    "query": "was sind unsere coding standards für typescript?",
+    "should_trigger": false
+  },
+  {
+    "query": "füg den security-officer agent als reviewer zum gitlab MR hinzu",
+    "should_trigger": false
+  },
+  {
+    "query": "dokumentier die DORA findings im wiki unter projekte/estably",
+    "should_trigger": false
+  },
+  {
+    "query": "zeig mir den git diff der letzten 3 commits",
+    "should_trigger": false
+  }
+]

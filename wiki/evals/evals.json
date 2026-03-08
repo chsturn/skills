@@ -1,0 +1,23 @@
+{
+  "skill_name": "wiki",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/wiki transaction-monitoring",
+      "expected_output": "Funktionale Analyse des Transaction-Monitoring-Features. Sollte den Token aus ~/.claude/.wiki-token laden, Code durchsuchen, Markdown in /tmp schreiben, und per wiki-push.mjs ins Wiki pushen. Kein direktes JSON-Escaping in curl.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "/wiki user-management security",
+      "expected_output": "Sicherheitsanalyse des User-Management-Features. Sollte Auth, Input-Validierung, CSRF, Rate Limiting etc. analysieren. Push via /tmp-Datei + wiki-push.mjs. Token aus File.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/wiki e2e-tests dora",
+      "expected_output": "DORA-Compliance-Analyse der E2E-Tests. Sollte dora-checklist.md laden, relevante DORA-Artikel prüfen, Gap-Analyse erstellen. Push via /tmp + wiki-push.mjs.",
+      "files": []
+    }
+  ]
+}
