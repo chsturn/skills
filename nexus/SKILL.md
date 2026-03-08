@@ -26,7 +26,10 @@ Load the project context first, then choose the right workflow.
 ## Memory & environment
 
 ### Fixed memory endpoint
-- Memory / GraphRAG: `192.168.178.100`
+- FalkorDB / Graph: `192.168.178.100:6379`
+- FalkorDB Browser: `http://192.168.178.100:3000`
+- Qdrant: `http://192.168.178.100:6333`
+- Ollama Embeddings: `http://192.168.178.100:11434`
 
 ### Important rule
 - For deploy topics, infra questions, SSH targets, host selection, server roles, and runtime environment details: **query `carlo_memory` first instead of relying on hardcoded host knowledge in the skill**.
